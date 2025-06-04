@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(flow_control/burst_fnr_filter.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(60f07b587b57fcc919dc1612b577dc74)                     */
+/* BINDTOOL_HEADER_FILE_HASH(0d4a40c872d54348c1a299d2f31e280e)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
