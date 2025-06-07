@@ -49,15 +49,8 @@ namespace gr {
       // Resolve remote host address
       udp::resolver resolver(d_io_service);
 
-      udp::resolver::query rx_query(
-        udp::v4(), bind_addr, src_port,
-        boost::asio::ip::resolver_query_base::passive);
-      udp::resolver::query tx_query(
-        udp::v4(), remote_addr, dst_port,
-        boost::asio::ip::resolver_query_base::passive);
-
-      d_udp_endpoint_rx = *resolver.resolve(rx_query);
-      d_udp_endpoint_tx = *resolver.resolve(tx_query);
+      d_udp_endpoint_rx = *resolver.resolve(udp::v4(), bind_addr, src_port).begin();
+      d_udp_endpoint_tx = *resolver.resolve(udp::v4(), remote_addr, dst_port).begin();
 
       // Create a socket
       d_udp_socket.reset(new udp::socket(d_io_service, d_udp_endpoint_rx));

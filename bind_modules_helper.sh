@@ -1,50 +1,50 @@
-gr_modtool bind endian
-gr_modtool bind misc_utils/burst_file_source
-gr_modtool bind misc_utils/fn_time
-gr_modtool bind misc_utils/burst_file_sink
-gr_modtool bind misc_utils/msg_to_tag
-gr_modtool bind misc_utils/message_printer
-gr_modtool bind misc_utils/burst_to_fn_time
-gr_modtool bind misc_utils/tmsi_dumper
-gr_modtool bind misc_utils/message_file_source
-gr_modtool bind misc_utils/controlled_fractional_resampler_cc
-gr_modtool bind misc_utils/extract_immediate_assignment
-gr_modtool bind misc_utils/extract_assignment_cmd
-gr_modtool bind misc_utils/bursts_printer
-gr_modtool bind misc_utils/message_file_sink
-gr_modtool bind misc_utils/controlled_rotator_cc
-gr_modtool bind misc_utils/collect_system_info
-gr_modtool bind misc_utils/extract_system_info
-gr_modtool bind misc_utils/extract_cmc
-gr_modtool bind gsm_constants
-gr_modtool bind flow_control/burst_fnr_filter
-gr_modtool bind flow_control/burst_sdcch_subslot_splitter
-gr_modtool bind flow_control/burst_timeslot_filter
-gr_modtool bind flow_control/dummy_burst_filter
-gr_modtool bind flow_control/common
-gr_modtool bind flow_control/burst_sdcch_subslot_filter
-gr_modtool bind flow_control/burst_type_filter
-gr_modtool bind flow_control/burst_timeslot_splitter
-gr_modtool bind flow_control/uplink_downlink_splitter
-gr_modtool bind transmitter/txtime_setter
-gr_modtool bind transmitter/gen_test_ab
-gr_modtool bind transmitter/preprocess_tx_burst
-gr_modtool bind qa_utils/message_source
-gr_modtool bind qa_utils/burst_sink
-gr_modtool bind qa_utils/burst_source
-gr_modtool bind qa_utils/message_sink
-gr_modtool bind constants
-gr_modtool bind decoding/tch_f_decoder
-gr_modtool bind decoding/tch_h_decoder
-gr_modtool bind decoding/control_channels_decoder
-gr_modtool bind demapping/universal_ctrl_chans_demapper
-gr_modtool bind demapping/tch_f_chans_demapper
-gr_modtool bind demapping/tch_h_chans_demapper
-gr_modtool bind receiver/receiver
-gr_modtool bind receiver/clock_offset_control
-gr_modtool bind receiver/cx_channel_hopper
-gr_modtool bind plotting
-gr_modtool bind gsmtap
-gr_modtool bind trx/trx_burst_if
-gr_modtool bind api
-gr_modtool bind decryption/decryption
+gr_modtool bind -u endian
+gr_modtool bind -u misc_utils/burst_file_source
+gr_modtool bind -u misc_utils/fn_time
+gr_modtool bind -u misc_utils/burst_file_sink
+gr_modtool bind -u misc_utils/msg_to_tag
+gr_modtool bind -u misc_utils/message_printer
+gr_modtool bind -u misc_utils/burst_to_fn_time
+gr_modtool bind -u misc_utils/tmsi_dumper
+gr_modtool bind -u misc_utils/message_file_source
+gr_modtool bind -u misc_utils/controlled_fractional_resampler_cc
+gr_modtool bind -u misc_utils/extract_immediate_assignment
+gr_modtool bind -u misc_utils/extract_assignment_cmd
+gr_modtool bind -u misc_utils/bursts_printer
+gr_modtool bind -u misc_utils/message_file_sink
+gr_modtool bind -u misc_utils/controlled_rotator_cc
+gr_modtool bind -u misc_utils/collect_system_info
+gr_modtool bind -u misc_utils/extract_system_info
+gr_modtool bind -u misc_utils/extract_cmc
+gr_modtool bind -u gsm_constants
+gr_modtool bind -u flow_control/burst_fnr_filter
+gr_modtool bind -u flow_control/burst_sdcch_subslot_splitter
+gr_modtool bind -u flow_control/burst_timeslot_filter
+gr_modtool bind -u flow_control/dummy_burst_filter
+gr_modtool bind -u flow_control/common
+gr_modtool bind -u flow_control/burst_sdcch_subslot_filter
+gr_modtool bind -u flow_control/burst_type_filter
+gr_modtool bind -u flow_control/burst_timeslot_splitter
+gr_modtool bind -u flow_control/uplink_downlink_splitter
+gr_modtool bind -u transmitter/txtime_setter
+gr_modtool bind -u transmitter/gen_test_ab
+gr_modtool bind -u transmitter/preprocess_tx_burst
+gr_modtool bind -u qa_utils/message_source
+gr_modtool bind -u qa_utils/burst_sink
+gr_modtool bind -u qa_utils/burst_source
+gr_modtool bind -u qa_utils/message_sink
+gr_modtool bind -u constants
+gr_modtool bind -u decoding/tch_f_decoder
+gr_modtool bind -u decoding/tch_h_decoder
+gr_modtool bind -u decoding/control_channels_decoder
+gr_modtool bind -u demapping/universal_ctrl_chans_demapper
+gr_modtool bind -u demapping/tch_f_chans_demapper
+gr_modtool bind -u demapping/tch_h_chans_demapper
+gr_modtool bind -u receiver/receiver
+gr_modtool bind -u receiver/clock_offset_control
+gr_modtool bind -u receiver/cx_channel_hopper
+gr_modtool bind -u plotting
+gr_modtool bind -u gsmtap
+gr_modtool bind -u trx/trx_burst_if
+gr_modtool bind -u api
+gr_modtool bind -u decryption/decryption
