@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(qa_utils/burst_sink.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(320e4114cfb05203a7d3778687b00350)                     */
+/* BINDTOOL_HEADER_FILE_HASH(a4e452730d052832e8f9e37e641cd1a3)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>

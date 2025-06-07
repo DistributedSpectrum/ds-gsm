@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Free Software Foundation, Inc.
+ * Copyright 2025 Free Software Foundation, Inc.
  *
  * This file is part of GNU Radio
  *
@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(misc_utils/burst_file_sink.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(3cff86f9caf73649b330a3d09ab09f3c)                     */
+/* BINDTOOL_HEADER_FILE_HASH(3f4ce9b0bd6fa347887b4a75de3c2786)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -30,31 +30,18 @@ namespace py = pybind11;
 void bind_burst_file_sink(py::module& m)
 {
 
-    using burst_file_sink    = ::gr::gsm::burst_file_sink;
+    using burst_file_sink = ::gr::gsm::burst_file_sink;
 
 
-    py::class_<burst_file_sink, gr::block, gr::basic_block,
-        std::shared_ptr<burst_file_sink>>(m, "burst_file_sink", D(burst_file_sink))
+    py::class_<burst_file_sink,
+               gr::block,
+               gr::basic_block,
+               std::shared_ptr<burst_file_sink>>(m, "burst_file_sink", D(burst_file_sink))
 
         .def(py::init(&burst_file_sink::make),
-           py::arg("filename"),
-           D(burst_file_sink,make)
-        )
-        
-
+             py::arg("filename"),
+             D(burst_file_sink, make))
 
 
         ;
-
-
-
-
 }
-
-
-
-
-
-
-
-
