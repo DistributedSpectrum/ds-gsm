@@ -1,0 +1,1581 @@
+options:
+  parameters:
+    author: subrad
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: get_tch_bladerf
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: Not titled yet
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: filter_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 0,2,1,1
+    label: filt_gain
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: int
+    start: '1'
+    step: '1'
+    stop: '300'
+    value: '29'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [304, 1104.0]
+    rotation: 0
+    state: disabled
+- name: freq_rx
+  id: variable_qtgui_entry
+  parameters:
+    comment: ''
+    entry_signal: editingFinished
+    gui_hint: 0,0,1,2
+    label: Frequency rx
+    type: real
+    value: fc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [584, 1200.0]
+    rotation: 0
+    state: disabled
+- name: freq_tx
+  id: variable_qtgui_entry
+  parameters:
+    comment: ''
+    entry_signal: editingFinished
+    gui_hint: 0,3,1,2
+    label: Frequency tx
+    type: real
+    value: fc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [776, 1216.0]
+    rotation: 0
+    state: disabled
+- name: input_rx_freq
+  id: variable_qtgui_entry
+  parameters:
+    comment: ''
+    entry_signal: editingFinished
+    gui_hint: 1,0,1,3
+    label: 'RX Center Freq '
+    type: real
+    value: fc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [248, 124.0]
+    rotation: 0
+    state: enabled
+- name: input_sigmf
+  id: variable
+  parameters:
+    comment: ''
+    value: '"../test_data/sms_downlink_tail"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1016, 16.0]
+    rotation: 0
+    state: enabled
+- name: input_sigmf_entry
+  id: variable_qtgui_entry
+  parameters:
+    comment: ''
+    entry_signal: editingFinished
+    gui_hint: 0,0,1,6
+    label: SigMF Data filepath
+    type: string
+    value: input_file_name
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [984, 112.0]
+    rotation: 0
+    state: enabled
+- name: sdr_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 1,3,1,3
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: int
+    start: '-16'
+    step: '1'
+    stop: '60'
+    value: rx_gain
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [512, 112.0]
+    rotation: 0
+    state: enabled
+- name: sigmf_file_replay
+  id: variable_qtgui_check_box
+  parameters:
+    comment: ''
+    'false': 'False'
+    gui_hint: 0,7,1,1
+    label: Enable SigMF file replay
+    'true': 'True'
+    type: bool
+    value: sigmf_enable
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [776, 112.0]
+    rotation: 0
+    state: enabled
+- name: tx_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 0,9,1,1
+    label: gain_tx
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '-23.75'
+    step: '.25'
+    stop: '66'
+    value: '12'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [688, 1040.0]
+    rotation: 0
+    state: disabled
+- name: audio_sink_0
+  id: audio_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    device_name: ''
+    num_inputs: '1'
+    ok_to_block: 'True'
+    samp_rate: '8000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1696, 172.0]
+    rotation: 0
+    state: enabled
+- name: bladeRF_source_0
+  id: bladeRF_source
+  parameters:
+    affinity: ''
+    alias: ''
+    bias_tee0: 'False'
+    bias_tee1: 'False'
+    buffers: '512'
+    buflen: '4096'
+    bw: samp_rate_in
+    comment: ''
+    dac: '10000'
+    dc_calibration: LPF_TUNING
+    dc_offset_mode0: '0'
+    dc_offset_mode1: '0'
+    device_id: serial_id
+    feature: default
+    fpga_image: ''
+    fpga_reload: 'False'
+    freq: input_rx_freq
+    gain0: sdr_gain
+    gain1: '10'
+    gain_mode0: 'False'
+    gain_mode1: 'False'
+    if_gain0: sdr_gain
+    if_gain1: '20'
+    in_clk: ONBOARD
+    iq_balance_mode0: '0'
+    iq_balance_mode1: '0'
+    lpf_mode: disabled
+    maxoutbuf: '0'
+    metadata: 'False'
+    minoutbuf: '0'
+    nchan: '1'
+    out_clk: 'False'
+    ref_clk: 10e6
+    sample_format: 16bit
+    sample_rate: samp_rate_in
+    sampling: internal
+    show_pmic: 'False'
+    smb: 38.4e6
+    tamer: internal
+    trigger0: 'False'
+    trigger1: 'False'
+    trigger_role0: master
+    trigger_role1: master
+    trigger_signal0: J51_1
+    trigger_signal1: J51_1
+    use_dac: 'False'
+    use_ref_clk: 'False'
+    verbosity: verbose
+    xb200: none
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [0, 224.0]
+    rotation: 0
+    state: enabled
+- name: blocks_abs_xx_0_0
+  id: blocks_abs_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: short
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [816, 624.0]
+    rotation: 0
+    state: enabled
+- name: blocks_complex_to_interleaved_short_0
+  id: blocks_complex_to_interleaved_short
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale_factor: '2047.0'
+    vector_output: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [792, 864.0]
+    rotation: 0
+    state: disabled
+- name: blocks_complex_to_interleaved_short_1
+  id: blocks_complex_to_interleaved_short
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale_factor: '2047'
+    vector_output: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [632, 608.0]
+    rotation: 0
+    state: enabled
+- name: blocks_file_sink_0
+  id: blocks_file_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    append: 'False'
+    comment: ''
+    file: out.gsm
+    type: byte
+    unbuffered: 'False'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1656, 428.0]
+    rotation: 0
+    state: enabled
+- name: blocks_file_source_0
+  id: blocks_file_source
+  parameters:
+    affinity: ''
+    alias: ''
+    begin_tag: pmt.PMT_NIL
+    comment: ''
+    file: /home/subrad/work/gsm_work/ds-gsm/test_data/sms_multirtl_downlink_tail.cfile
+    length: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    repeat: 'False'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [48, 1008.0]
+    rotation: 0
+    state: disabled
+- name: blocks_interleaved_short_to_complex_0
+  id: blocks_interleaved_short_to_complex
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale_factor: '2047'
+    swap: 'False'
+    vector_input: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [912, 608.0]
+    rotation: 0
+    state: enabled
+- name: blocks_interleaved_short_to_complex_0_0
+  id: blocks_interleaved_short_to_complex
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale_factor: '2047.0'
+    swap: 'False'
+    vector_input: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [912, 976.0]
+    rotation: 0
+    state: disabled
+- name: blocks_interleaved_short_to_complex_0_0_0
+  id: blocks_interleaved_short_to_complex
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale_factor: '2047.0'
+    swap: 'False'
+    vector_input: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [208, 576.0]
+    rotation: 0
+    state: enabled
+- name: blocks_selector_0
+  id: blocks_selector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    enabled: 'True'
+    input_index: sigmf_file_replay
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    num_outputs: '1'
+    output_index: '0'
+    showports: 'True'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [408, 288.0]
+    rotation: 0
+    state: enabled
+- name: blocks_short_to_float_0
+  id: blocks_short_to_float
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale: '32767.0'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1680, 244.0]
+    rotation: 0
+    state: enabled
+- name: blocks_sigmf_sink_minimal_0
+  id: blocks_sigmf_sink_minimal
+  parameters:
+    affinity: ''
+    alias: ''
+    author: ''
+    center_freq: fc
+    comment: ''
+    description: 'Signal should be centered around TX Freq. Signal BW ~= 280kHz Generated
+      using sms_multirtl_downlink_tail.cfile scaled to 12bit. '
+    filename: gsm_downlink_BCCH_tail
+    hw_info: ''
+    sample_rate: samp_rate_in
+    type: complex short (sc16_le)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1032, 832.0]
+    rotation: 0
+    state: disabled
+- name: blocks_sigmf_source_minimal_0
+  id: blocks_sigmf_source_minimal
+  parameters:
+    affinity: ''
+    alias: ''
+    begin_tag: pmt.PMT_NIL
+    comment: ''
+    file: input_sigmf_entry
+    length: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    repeat: 'True'
+    type: complex short (sc16_le)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [0, 544.0]
+    rotation: 0
+    state: enabled
+- name: blocks_stream_to_vector_0
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: '33'
+    type: byte
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1680, 368.0]
+    rotation: 0
+    state: enabled
+- name: blocks_throttle2_0
+  id: blocks_throttle2
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ignoretag: 'True'
+    limit: auto
+    maximum: '0.1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_second: samp_rate_in
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [256, 992.0]
+    rotation: 0
+    state: disabled
+- name: blocks_throttle2_1
+  id: blocks_throttle2
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ignoretag: 'True'
+    limit: auto
+    maximum: '0.1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_second: samp_rate_in
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [248, 432.0]
+    rotation: 0
+    state: enabled
+- name: fc
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: fc
+    short_id: ''
+    type: eng_float
+    value: 937e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [296, 0.0]
+    rotation: 0
+    state: enabled
+- name: freq_xlating_fir_filter_xxx_0
+  id: freq_xlating_fir_filter_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    center_freq: '.0'
+    comment: ''
+    decim: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate_in
+    taps: firdes.low_pass(filter_gain,samp_rate_in,0.136e6, 50e3)
+    type: ccc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [488, 880.0]
+    rotation: 0
+    state: disabled
+- name: gsm_clock_offset_control_1
+  id: gsm_clock_offset_control
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    fc: fc
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    osr: osr
+    samp_rate: samp_rate_in
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [768, 400.0]
+    rotation: 180
+    state: enabled
+- name: gsm_control_channels_decoder_0
+  id: gsm_control_channels_decoder
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1104, 472.0]
+    rotation: 0
+    state: enabled
+- name: gsm_decryption_0_0_0
+  id: gsm_decryption
+  parameters:
+    a5_version: '1'
+    affinity: ''
+    alias: ''
+    comment: ''
+    k_c: '[0x1e, 0xf0, 0x0b, 0xab, 0x3b, 0xac, 0x70, 0x02]'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1464, 124.0]
+    rotation: 0
+    state: enabled
+- name: gsm_decryption_0_0_0_0
+  id: gsm_decryption
+  parameters:
+    a5_version: '1'
+    affinity: ''
+    alias: ''
+    comment: ''
+    k_c: '[0x1e, 0xf0, 0x0b, 0xab, 0x3b, 0xac, 0x70, 0x02]'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1464, 204.0]
+    rotation: 0
+    state: enabled
+- name: gsm_input_1
+  id: gsm_input
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    fc: fc
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    osr: osr
+    ppm: '0'
+    samp_rate_in: samp_rate_in
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [664, 272.0]
+    rotation: 0
+    state: enabled
+- name: gsm_message_printer_0
+  id: gsm_message_printer
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    prepend_fnr: 'False'
+    prepend_frame_count: 'False'
+    prepend_string: '""'
+    print_gsmtap_header: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1448, 628.0]
+    rotation: 0
+    state: enabled
+- name: gsm_message_printer_0_1
+  id: gsm_message_printer
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    prepend_fnr: 'False'
+    prepend_frame_count: 'False'
+    prepend_string: '""'
+    print_gsmtap_header: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1448, 316.0]
+    rotation: 0
+    state: enabled
+- name: gsm_receiver_1
+  id: gsm_receiver
+  parameters:
+    affinity: ''
+    alias: ''
+    cell_allocation: '[0]'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_streams: '1'
+    osr: '4'
+    tseq_nums: '[]'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [856, 248.0]
+    rotation: 0
+    state: enabled
+- name: gsm_tch_f_chans_demapper_0
+  id: gsm_tch_f_chans_demapper
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    timeslot_nr: '5'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1144, 232.0]
+    rotation: 0
+    state: enabled
+- name: gsm_tch_f_decoder_0
+  id: gsm_tch_f_decoder
+  parameters:
+    affinity: ''
+    alias: ''
+    boundary_check: 'True'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mode: gsm.TCH_FS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1160, 368.0]
+    rotation: 0
+    state: enabled
+- name: input_file_name
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: ''
+    short_id: i
+    type: str
+    value: '"../test_data/gsm_test_voice_call.sigmf-data"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [824, 16.0]
+    rotation: 0
+    state: enabled
+- name: network_socket_pdu_0
+  id: network_socket_pdu
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    host: 127.0.0.1
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mtu: '10000'
+    port: '4729'
+    tcp_no_delay: 'False'
+    type: UDP_CLIENT
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1664, 508.0]
+    rotation: 0
+    state: enabled
+- name: network_socket_pdu_1
+  id: network_socket_pdu
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: added in order to avoid generating ICMP messages
+    host: 127.0.0.1
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mtu: '10000'
+    port: '4729'
+    tcp_no_delay: 'False'
+    type: UDP_SERVER
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1672, 620.0]
+    rotation: 0
+    state: enabled
+- name: osmosdr_sink_0_0
+  id: osmosdr_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    ant0: ''
+    ant1: ''
+    ant10: ''
+    ant11: ''
+    ant12: ''
+    ant13: ''
+    ant14: ''
+    ant15: ''
+    ant16: ''
+    ant17: ''
+    ant18: ''
+    ant19: ''
+    ant2: ''
+    ant20: ''
+    ant21: ''
+    ant22: ''
+    ant23: ''
+    ant24: ''
+    ant25: ''
+    ant26: ''
+    ant27: ''
+    ant28: ''
+    ant29: ''
+    ant3: ''
+    ant30: ''
+    ant31: ''
+    ant4: ''
+    ant5: ''
+    ant6: ''
+    ant7: ''
+    ant8: ''
+    ant9: ''
+    args: '"bladerf=e62e229e5a6a41cbba874004a2856b27"'
+    bb_gain0: tx_gain
+    bb_gain1: '20'
+    bb_gain10: '20'
+    bb_gain11: '20'
+    bb_gain12: '20'
+    bb_gain13: '20'
+    bb_gain14: '20'
+    bb_gain15: '20'
+    bb_gain16: '20'
+    bb_gain17: '20'
+    bb_gain18: '20'
+    bb_gain19: '20'
+    bb_gain2: '20'
+    bb_gain20: '20'
+    bb_gain21: '20'
+    bb_gain22: '20'
+    bb_gain23: '20'
+    bb_gain24: '20'
+    bb_gain25: '20'
+    bb_gain26: '20'
+    bb_gain27: '20'
+    bb_gain28: '20'
+    bb_gain29: '20'
+    bb_gain3: '20'
+    bb_gain30: '20'
+    bb_gain31: '20'
+    bb_gain4: '20'
+    bb_gain5: '20'
+    bb_gain6: '20'
+    bb_gain7: '20'
+    bb_gain8: '20'
+    bb_gain9: '20'
+    bw0: samp_rate
+    bw1: '0'
+    bw10: '0'
+    bw11: '0'
+    bw12: '0'
+    bw13: '0'
+    bw14: '0'
+    bw15: '0'
+    bw16: '0'
+    bw17: '0'
+    bw18: '0'
+    bw19: '0'
+    bw2: '0'
+    bw20: '0'
+    bw21: '0'
+    bw22: '0'
+    bw23: '0'
+    bw24: '0'
+    bw25: '0'
+    bw26: '0'
+    bw27: '0'
+    bw28: '0'
+    bw29: '0'
+    bw3: '0'
+    bw30: '0'
+    bw31: '0'
+    bw4: '0'
+    bw5: '0'
+    bw6: '0'
+    bw7: '0'
+    bw8: '0'
+    bw9: '0'
+    clock_source0: ''
+    clock_source1: ''
+    clock_source2: ''
+    clock_source3: ''
+    clock_source4: ''
+    clock_source5: ''
+    clock_source6: ''
+    clock_source7: ''
+    comment: ''
+    corr0: '0'
+    corr1: '0'
+    corr10: '0'
+    corr11: '0'
+    corr12: '0'
+    corr13: '0'
+    corr14: '0'
+    corr15: '0'
+    corr16: '0'
+    corr17: '0'
+    corr18: '0'
+    corr19: '0'
+    corr2: '0'
+    corr20: '0'
+    corr21: '0'
+    corr22: '0'
+    corr23: '0'
+    corr24: '0'
+    corr25: '0'
+    corr26: '0'
+    corr27: '0'
+    corr28: '0'
+    corr29: '0'
+    corr3: '0'
+    corr30: '0'
+    corr31: '0'
+    corr4: '0'
+    corr5: '0'
+    corr6: '0'
+    corr7: '0'
+    corr8: '0'
+    corr9: '0'
+    freq0: freq_tx
+    freq1: 100e6
+    freq10: 100e6
+    freq11: 100e6
+    freq12: 100e6
+    freq13: 100e6
+    freq14: 100e6
+    freq15: 100e6
+    freq16: 100e6
+    freq17: 100e6
+    freq18: 100e6
+    freq19: 100e6
+    freq2: 100e6
+    freq20: 100e6
+    freq21: 100e6
+    freq22: 100e6
+    freq23: 100e6
+    freq24: 100e6
+    freq25: 100e6
+    freq26: 100e6
+    freq27: 100e6
+    freq28: 100e6
+    freq29: 100e6
+    freq3: 100e6
+    freq30: 100e6
+    freq31: 100e6
+    freq4: 100e6
+    freq5: 100e6
+    freq6: 100e6
+    freq7: 100e6
+    freq8: 100e6
+    freq9: 100e6
+    gain0: tx_gain
+    gain1: '10'
+    gain10: '10'
+    gain11: '10'
+    gain12: '10'
+    gain13: '10'
+    gain14: '10'
+    gain15: '10'
+    gain16: '10'
+    gain17: '10'
+    gain18: '10'
+    gain19: '10'
+    gain2: '10'
+    gain20: '10'
+    gain21: '10'
+    gain22: '10'
+    gain23: '10'
+    gain24: '10'
+    gain25: '10'
+    gain26: '10'
+    gain27: '10'
+    gain28: '10'
+    gain29: '10'
+    gain3: '10'
+    gain30: '10'
+    gain31: '10'
+    gain4: '10'
+    gain5: '10'
+    gain6: '10'
+    gain7: '10'
+    gain8: '10'
+    gain9: '10'
+    if_gain0: tx_gain
+    if_gain1: '20'
+    if_gain10: '20'
+    if_gain11: '20'
+    if_gain12: '20'
+    if_gain13: '20'
+    if_gain14: '20'
+    if_gain15: '20'
+    if_gain16: '20'
+    if_gain17: '20'
+    if_gain18: '20'
+    if_gain19: '20'
+    if_gain2: '20'
+    if_gain20: '20'
+    if_gain21: '20'
+    if_gain22: '20'
+    if_gain23: '20'
+    if_gain24: '20'
+    if_gain25: '20'
+    if_gain26: '20'
+    if_gain27: '20'
+    if_gain28: '20'
+    if_gain29: '20'
+    if_gain3: '20'
+    if_gain30: '20'
+    if_gain31: '20'
+    if_gain4: '20'
+    if_gain5: '20'
+    if_gain6: '20'
+    if_gain7: '20'
+    if_gain8: '20'
+    if_gain9: '20'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nchan: '1'
+    num_mboards: '1'
+    sample_rate: samp_rate
+    sync: sync
+    time_source0: ''
+    time_source1: ''
+    time_source2: ''
+    time_source3: ''
+    time_source4: ''
+    time_source5: ''
+    time_source6: ''
+    time_source7: ''
+    type: fc32
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1376, 1072.0]
+    rotation: 0
+    state: disabled
+- name: osr
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: OSR
+    short_id: ''
+    type: intx
+    value: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [176, 16.0]
+    rotation: 0
+    state: enabled
+- name: pdu_pdu_to_tagged_stream_0
+  id: pdu_pdu_to_tagged_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1416, 436.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_freq_sink_x_0
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '0.2'
+    axislabels: 'True'
+    bw: samp_rate_in
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'True'
+    fc: '0'
+    fftsize: '1024'
+    freqhalf: 'True'
+    grid: 'False'
+    gui_hint: 2,0,1,6
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: complex
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_HANN
+    ymax: '10'
+    ymin: '-120'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [640, 512.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_freq_sink_x_0_0
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '0.1'
+    axislabels: 'True'
+    bw: samp_rate_in
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'True'
+    fc: '0'
+    fftsize: '1024'
+    freqhalf: 'True'
+    grid: 'False'
+    gui_hint: 1,6,1,6
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '"1"'
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: complex
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [472, 1008.0]
+    rotation: 0
+    state: disabled
+- name: qtgui_freq_sink_x_0_0_0
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'True'
+    average: '1.0'
+    axislabels: 'True'
+    bw: samp_rate_in
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'True'
+    fc: '0'
+    fftsize: '4096'
+    freqhalf: 'True'
+    grid: 'True'
+    gui_hint: 1,12,1,6
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '"IF"'
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'True'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: complex
+    units: dB
+    update_time: '0.01'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_HAMMING
+    ymax: '-30'
+    ymin: '-160'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1232, 976.0]
+    rotation: 0
+    state: disabled
+- name: qtgui_time_sink_x_0
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'True'
+    gui_hint: 9,0,1,6
+    label1: I
+    label10: Signal 10
+    label2: Q
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: Max IQ value Stream (scaled by 2048)
+    nconnections: '1'
+    size: 4096*64
+    srate: samp_rate_in
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.08'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '1'
+    ymin: '0'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1112, 592.0]
+    rotation: 0
+    state: enabled
+- name: rx_gain
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: gain
+    short_id: g
+    type: intx
+    value: '20'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [520, 0.0]
+    rotation: 0
+    state: enabled
+- name: samp_rate_in
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: fs
+    short_id: ''
+    type: eng_float
+    value: 100.0e6/174.0
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [400, 36.0]
+    rotation: 0
+    state: enabled
+- name: serial_id
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: serial
+    short_id: s
+    type: str
+    value: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [616, 16.0]
+    rotation: 0
+    state: enabled
+- name: sigmf_enable
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: ''
+    short_id: e
+    type: intx
+    value: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [704, 16.0]
+    rotation: 0
+    state: enabled
+- name: vocoder_gsm_fr_decode_ps_0
+  id: vocoder_gsm_fr_decode_ps
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1664, 312.0]
+    rotation: 0
+    state: enabled
+
+connections:
+- [bladeRF_source_0, '0', blocks_selector_0, '0']
+- [blocks_abs_xx_0_0, '0', blocks_interleaved_short_to_complex_0, '0']
+- [blocks_complex_to_interleaved_short_0, '0', blocks_interleaved_short_to_complex_0_0,
+  '0']
+- [blocks_complex_to_interleaved_short_0, '0', blocks_sigmf_sink_minimal_0, '0']
+- [blocks_complex_to_interleaved_short_1, '0', blocks_abs_xx_0_0, '0']
+- [blocks_file_source_0, '0', blocks_throttle2_0, '0']
+- [blocks_interleaved_short_to_complex_0, '0', qtgui_time_sink_x_0, '0']
+- [blocks_interleaved_short_to_complex_0_0, '0', osmosdr_sink_0_0, '0']
+- [blocks_interleaved_short_to_complex_0_0, '0', qtgui_freq_sink_x_0_0_0, '0']
+- [blocks_interleaved_short_to_complex_0_0_0, '0', blocks_throttle2_1, '0']
+- [blocks_selector_0, '0', blocks_complex_to_interleaved_short_1, '0']
+- [blocks_selector_0, '0', gsm_input_1, '0']
+- [blocks_selector_0, '0', qtgui_freq_sink_x_0, '0']
+- [blocks_short_to_float_0, '0', audio_sink_0, '0']
+- [blocks_sigmf_source_minimal_0, '0', blocks_interleaved_short_to_complex_0_0_0,
+  '0']
+- [blocks_stream_to_vector_0, '0', vocoder_gsm_fr_decode_ps_0, '0']
+- [blocks_throttle2_0, '0', freq_xlating_fir_filter_xxx_0, '0']
+- [blocks_throttle2_0, '0', qtgui_freq_sink_x_0_0, '0']
+- [blocks_throttle2_1, '0', blocks_selector_0, '1']
+- [freq_xlating_fir_filter_xxx_0, '0', blocks_complex_to_interleaved_short_0, '0']
+- [gsm_clock_offset_control_1, ctrl, gsm_input_1, ctrl_in]
+- [gsm_control_channels_decoder_0, msgs, gsm_message_printer_0, msgs]
+- [gsm_control_channels_decoder_0, msgs, network_socket_pdu_0, pdus]
+- [gsm_decryption_0_0_0, bursts, gsm_tch_f_decoder_0, bursts]
+- [gsm_decryption_0_0_0_0, bursts, gsm_control_channels_decoder_0, bursts]
+- [gsm_input_1, '0', gsm_receiver_1, '0']
+- [gsm_receiver_1, C0, gsm_tch_f_chans_demapper_0, bursts]
+- [gsm_receiver_1, measurements, gsm_clock_offset_control_1, measurements]
+- [gsm_tch_f_chans_demapper_0, acch_bursts, gsm_decryption_0_0_0_0, bursts]
+- [gsm_tch_f_chans_demapper_0, tch_bursts, gsm_decryption_0_0_0, bursts]
+- [gsm_tch_f_decoder_0, msgs, gsm_message_printer_0_1, msgs]
+- [gsm_tch_f_decoder_0, msgs, network_socket_pdu_0, pdus]
+- [gsm_tch_f_decoder_0, voice, pdu_pdu_to_tagged_stream_0, pdus]
+- [pdu_pdu_to_tagged_stream_0, '0', blocks_file_sink_0, '0']
+- [pdu_pdu_to_tagged_stream_0, '0', blocks_stream_to_vector_0, '0']
+- [vocoder_gsm_fr_decode_ps_0, '0', blocks_short_to_float_0, '0']
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.12.0

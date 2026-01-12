@@ -22,13 +22,13 @@ include(GrPython)
 include(GrccCompile)
 add_subdirectory(helpers)
 
-GRCC_COMPILE(grgsm_livemon)
-GRCC_COMPILE(grgsm_livemon_headless)
+#GRCC_COMPILE(grgsm_livemon)
+#GRCC_COMPILE(grgsm_livemon_headless)
 
 set(gsm_flowgraphs "")
-OPTION(ENABLE_GRCC "Compile the flowgraphs with grcc" ON)
-OPTION(ENABLE_GSM_LIVEMON "Compile grgsm_livemon" ON)
-OPTION(ENABLE_GSM_LIVEMON_HEADLESS "Compile grgsm_livemon_headless" ON)
+OPTION(ENABLE_GRCC "Compile the flowgraphs with grcc" OFF)
+OPTION(ENABLE_GSM_LIVEMON "Compile grgsm_livemon" OFF)
+OPTION(ENABLE_GSM_LIVEMON_HEADLESS "Compile grgsm_livemon_headless" OFF)
 
 if(ENABLE_GRC AND ENABLE_GRCC AND ENABLE_GSM_LIVEMON)
     list (APPEND gsm_flowgraphs ${CMAKE_CURRENT_BINARY_DIR}/grgsm_livemon)
