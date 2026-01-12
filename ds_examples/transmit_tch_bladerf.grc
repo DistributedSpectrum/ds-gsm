@@ -1,0 +1,520 @@
+options:
+  parameters:
+    author: Bradley C
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: Default to TCH filepath with test data Fs
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: transmit_tch_bladerf
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: 'GSM TCH Transmitter bladeRF/SigMF '
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: freq_tx
+  id: variable_qtgui_entry
+  parameters:
+    comment: ''
+    entry_signal: editingFinished
+    gui_hint: 1,0,1,3
+    label: Frequency tx
+    type: real
+    value: fc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 124.0]
+    rotation: 0
+    state: enabled
+- name: input_sigmf_entry
+  id: variable_qtgui_entry
+  parameters:
+    comment: ''
+    entry_signal: editingFinished
+    gui_hint: 0,0,1,6
+    label: SigMF Data filepath
+    type: string
+    value: input_file_name
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [744, 172.0]
+    rotation: 0
+    state: enabled
+- name: tx_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 1,3,1,3
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '-23.75'
+    step: '.25'
+    stop: '66'
+    value: tx_gain_in
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [552, 172.0]
+    rotation: 0
+    state: enabled
+- name: bladeRF_sink_0
+  id: bladeRF_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    bias_tee0: 'True'
+    bias_tee1: 'False'
+    buffers: '512'
+    buflen: '4096'
+    bw: samp_rate
+    comment: ''
+    dac: '10000'
+    dc_calibration: LPF_TUNING
+    dc_i0: '0'
+    dc_i1: '0'
+    dc_q0: '0'
+    dc_q1: '0'
+    device_id: serial_id
+    feature: default
+    fpga_image: ''
+    fpga_reload: 'False'
+    freq: freq_tx
+    gain0: tx_gain
+    gain1: '10'
+    if_gain0: tx_gain
+    if_gain1: '20'
+    in_clk: ONBOARD
+    iq_gain0: '0'
+    iq_gain1: '0'
+    iq_phase0: '0'
+    iq_phase1: '0'
+    lpf_mode: disabled
+    maxoutbuf: '0'
+    metadata: 'False'
+    minoutbuf: '0'
+    nchan: '1'
+    out_clk: 'False'
+    ref_clk: 10e6
+    sample_format: 16bit
+    sample_rate: samp_rate
+    sampling: internal
+    show_pmic: 'False'
+    smb: 38.4e6
+    tamer: internal
+    trigger0: 'False'
+    trigger1: 'False'
+    trigger_role0: master
+    trigger_role1: master
+    trigger_signal0: J51_1
+    trigger_signal1: J51_1
+    use_dac: 'False'
+    use_ref_clk: 'False'
+    verbosity: verbose
+    xb200: none
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [888, 292.0]
+    rotation: 0
+    state: enabled
+- name: blocks_abs_xx_0_0
+  id: blocks_abs_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: short
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [264, 624.0]
+    rotation: 0
+    state: enabled
+- name: blocks_interleaved_short_to_complex_0
+  id: blocks_interleaved_short_to_complex
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale_factor: '2047'
+    swap: 'False'
+    vector_input: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [376, 612.0]
+    rotation: 0
+    state: enabled
+- name: blocks_interleaved_short_to_complex_0_0_0
+  id: blocks_interleaved_short_to_complex
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale_factor: '2047.0'
+    swap: 'False'
+    vector_input: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [296, 404.0]
+    rotation: 0
+    state: enabled
+- name: blocks_sigmf_source_minimal_0
+  id: blocks_sigmf_source_minimal
+  parameters:
+    affinity: ''
+    alias: ''
+    begin_tag: pmt.PMT_NIL
+    comment: ''
+    file: input_sigmf_entry
+    length: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    repeat: 'True'
+    type: complex short (sc16_le)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [56, 388.0]
+    rotation: 0
+    state: enabled
+- name: blocks_throttle2_0
+  id: blocks_throttle2
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ignoretag: 'True'
+    limit: auto
+    maximum: '0.1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_second: samp_rate
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [504, 404.0]
+    rotation: 0
+    state: enabled
+- name: fc
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: fc
+    short_id: ''
+    type: eng_float
+    value: 937e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [200, 20.0]
+    rotation: 0
+    state: enabled
+- name: input_file_name
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: ''
+    short_id: i
+    type: str
+    value: ../test_data/gsm_test_voice_call.sigmf-data
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [696, 20.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_freq_sink_x_0_0
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '0.1'
+    axislabels: 'True'
+    bw: samp_rate
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'True'
+    fc: '0'
+    fftsize: '2048'
+    freqhalf: 'True'
+    grid: 'False'
+    gui_hint: 2,0,1,6
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '"Freq Domain of SigMF"'
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: complex
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_HANN
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [696, 468.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_0
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'True'
+    gui_hint: 9,0,1,6
+    label1: I
+    label10: Signal 10
+    label2: Q
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: Max IQ value SigMF (scaled by 2048)
+    nconnections: '1'
+    size: 4096*64
+    srate: samp_rate
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.08'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '1'
+    ymin: '0'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [584, 596.0]
+    rotation: 0
+    state: enabled
+- name: samp_rate
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: part
+    label: fs
+    short_id: ''
+    type: eng_float
+    value: 100e6/174
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [328, 28.0]
+    rotation: 0
+    state: enabled
+- name: serial_id
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: serial
+    short_id: s
+    type: str
+    value: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [464, 20.0]
+    rotation: 0
+    state: enabled
+- name: tx_gain_in
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: gain
+    short_id: g
+    type: intx
+    value: '16'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [584, 20.0]
+    rotation: 0
+    state: enabled
+
+connections:
+- [blocks_abs_xx_0_0, '0', blocks_interleaved_short_to_complex_0, '0']
+- [blocks_interleaved_short_to_complex_0, '0', qtgui_time_sink_x_0, '0']
+- [blocks_interleaved_short_to_complex_0_0_0, '0', blocks_throttle2_0, '0']
+- [blocks_sigmf_source_minimal_0, '0', blocks_abs_xx_0_0, '0']
+- [blocks_sigmf_source_minimal_0, '0', blocks_interleaved_short_to_complex_0_0_0,
+  '0']
+- [blocks_throttle2_0, '0', bladeRF_sink_0, '0']
+- [blocks_throttle2_0, '0', qtgui_freq_sink_x_0_0, '0']
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.12.0

@@ -10,3 +10,5 @@ debian/tmp/
 debian/files
 .directory
 .idea
+*.sigmf-*
+*.gsm
